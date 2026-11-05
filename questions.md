@@ -19,3 +19,4 @@ a. email
 articles:
 - https://www.theodinproject.com/lessons/ruby-on-rails-migrations
 - https://www.railscarma.com/blog/rails-generate-migration-everything-you-need-to-know/
+- https://guides.rubyonrails.org/active_record_migrations.html
