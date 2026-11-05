@@ -24,14 +24,16 @@
   </head>
 
   <body>
-    <header class="bg-green-700">
-      <aside data-controller="locale">
+    <header class="bg-green-700 relative">
+      <aside class="absolute top-4 right-4 z-10" data-controller="locale">
         <%= form_with url: store_index_path, class: 'locale' do %>
           <%= select_tag 'set_locale',
             options_for_select(LANGUAGES, I18n.locale.to_s),
-            class: 'text-white',
+            class: 'bg-green-900 text-white rounded-md px-2 py-1',
             onchange: 'this.form.submit()' %>
-          <%= submit_tag 'submit', data: {'locale-target' => 'submit'} %>
+          <%= submit_tag 'submit',
+            class: 'bg-green-900 text-white rounded-md px-2 py-1',
+            data: {'locale-target' => 'submit'} %>
         <% end %>
       </aside>
       <%= image_tag 'logo.svg', alt: 'The Pragmatic Bookshelf' %>
