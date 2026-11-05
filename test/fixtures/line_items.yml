@@ -6,6 +6,6 @@ one:
   price: 1
 
 two:
-  product: two
-  cart: two
+  product: pragprog
+  order: one
   price: 1
