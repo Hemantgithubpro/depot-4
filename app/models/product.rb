@@ -18,6 +18,7 @@ class Product < ApplicationRecord
       errors.add(:image, "must be a GIF, JPG or PNG image")
     end
   end
+  validates :title, length: { minimum: 10 }
   validates :price, numericality: { greater_than_or_equal_to: 0.01 }
 
   private
