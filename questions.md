@@ -15,3 +15,7 @@ c. permalink(Input Field)
 6. Make input field in user creation form for -
 a. email
 7. Revise irreversible migration, and make an example of irreversible migration
+
+articles:
+- https://www.theodinproject.com/lessons/ruby-on-rails-migrations
+- https://www.railscarma.com/blog/rails-generate-migration-everything-you-need-to-know/
