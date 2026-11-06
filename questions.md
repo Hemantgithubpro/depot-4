@@ -8,6 +8,8 @@ c. permalink(string)
 a. email(string)
 4. Add following to cart
 a. line_items_count(integer), default: 0, not null
+https://blog.appsignal.com/2018/06/19/activerecords-counter-cache.html
+
 5. Make form fields in the product creation form for:
 a. enabled(checkbox),
 b. discount_price(Input Field),
