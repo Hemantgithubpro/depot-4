@@ -15,4 +15,14 @@
     <strong class="block font-medium mb-1">Price:</strong>
     <%= product.price %>
   </div>
+  <% if product.enabled %>
+    <div>
+      <strong class="block font-medium mb-1">Discouted Price:</strong>
+      <%= product.discount_price %>
+    </div>
+    <div>
+      <strong class="block font-medium mb-1">Permalink:</strong>
+      <%= product.permalink %>
+    </div>
+  <% end %>
 </div>
