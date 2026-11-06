@@ -20,6 +20,8 @@ class Product < ApplicationRecord
   end
   validates :title, length: { minimum: 10 }
   validates :price, numericality: { greater_than_or_equal_to: 0.01 }
+  validates :enabled, inclusion: { in: [ true, false ] }
+  validates :discount_price, numericality: { greater_than_or_equal_to: 0 }
 
   private
 

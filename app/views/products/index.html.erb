@@ -42,7 +42,13 @@
                            length: 80) %>
             </p>
             <p>
-              <%= number_to_currency(product.price) %>
+              <% if product.enabled %>
+                Discounted Price: 
+                <%= number_to_currency(product.price - product.discount_price) %>
+                <%#= truncate(strip_tags(product.permalink), length: 80)%>
+              <% else %>
+                <%= number_to_currency(product.price) %>
+              <% end %>
             </p>
           </td>
 
