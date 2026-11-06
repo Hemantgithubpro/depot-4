@@ -22,7 +22,6 @@ class Product < ApplicationRecord
   validates :price, numericality: { greater_than_or_equal_to: 0.01 }
   validates :enabled, inclusion: { in: [ true, false ] }
   validates :discount_price, numericality: { greater_than_or_equal_to: 0 }
-  validates :permalink, length: { minimum: 0, maximum: 500 }
 
   private
 
