@@ -22,3 +22,17 @@ articles:
 - https://www.theodinproject.com/lessons/ruby-on-rails-migrations
 - https://www.railscarma.com/blog/rails-generate-migration-everything-you-need-to-know/
 - https://guides.rubyonrails.org/active_record_migrations.html
+
+
+Q7. Revise irreversible migration, and make an example of irreversible migration
+Example of irreversible migration:
+remove column without data type, (with data type, it is reversible)
+then 
+db:migrate will remove the column
+and 
+db:rollback will not be able to restore the column and its data.
+
+```
+remove_column :products, :discount_price
+```
+it'll remove the column, and when we rollback, it will not be able to restore the column and its data.
