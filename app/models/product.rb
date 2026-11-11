@@ -19,14 +19,22 @@ class Product < ApplicationRecord
     end
   end
   validates :title, length: { minimum: 10 }
-  validates :price, numericality: { greater_than_or_equal_to: 0.01 }, if: -> { price.present? }
+  validates :price, numericality: { greater_than_or_equal_to: 0.01, greater_than: ->(product) { product.discount_price } }, if: -> { price.present? }
   # validates :price, numericality: { greater_than_or_equal_to: 0.01 }, allow_nil: true
   validates :enabled, inclusion: { in: [ true, false ] }
   validates :discount_price, numericality: { greater_than_or_equal_to: 0 }
   validates :permalink, uniqueness: true, format: { with: /\A[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+){2,}\z/ }
   validate :ensure_description_between_5_10_words
+  # validate :price_greater_than_discount_price
 
   private
+
+    # def price_greater_than_discount_price
+    #   if price <= discount_price
+    #    p self
+    #     errors.add(:price, "price should be greater than discount price")
+    #   end
+    # end
 
     def ensure_description_between_5_10_words
       return if description.nil?
