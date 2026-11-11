@@ -22,6 +22,8 @@ class Product < ApplicationRecord
   validates :price, numericality: { greater_than_or_equal_to: 0.01 }
   validates :enabled, inclusion: { in: [ true, false ] }
   validates :discount_price, numericality: { greater_than_or_equal_to: 0 }
+  validates :permalink, uniqueness: true, format: { with: /\A[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+){2,}\z/ }
+  validates 
 
   private
 
