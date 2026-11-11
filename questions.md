@@ -22,6 +22,7 @@ articles:
 - https://www.theodinproject.com/lessons/ruby-on-rails-migrations
 - https://www.railscarma.com/blog/rails-generate-migration-everything-you-need-to-know/
 - https://guides.rubyonrails.org/active_record_migrations.html
+- https://www.linkedin.com/pulse/what-permalink-seo-darlene-florrie-xaw0f/
 
 
 Q7. Revise irreversible migration, and make an example of irreversible migration
@@ -62,3 +63,6 @@ added only once to a cart.
 3. Add following validations in user model
 - Uniqueness of email
 - Email format
+
+articles:
+- https://guides.rubyonrails.org/active_record_validations.html
