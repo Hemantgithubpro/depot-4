@@ -67,3 +67,4 @@ added only once to a cart.
 
 articles:
 - https://guides.rubyonrails.org/active_record_validations.html
+- https://edgeapi.rubyonrails.org/classes/ActiveModel/EachValidator.html
