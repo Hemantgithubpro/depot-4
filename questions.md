@@ -67,3 +67,5 @@ added only once to a cart.
 articles:
 - https://guides.rubyonrails.org/active_record_validations.html
 - https://edgeapi.rubyonrails.org/classes/ActiveModel/EachValidator.html
+- https://guides.rubyonrails.org/v6.0.0/active_record_validations.html
+- https://stackoverflow.com/questions/923796/how-do-you-validate-uniqueness-of-a-pair-of-ids-in-ruby-on-rails
