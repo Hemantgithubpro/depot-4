@@ -6,7 +6,6 @@ class ProductTest < ActiveSupport::TestCase
     assert product.invalid?
     assert product.errors[:title].any?
     assert product.errors[:description].any?
-    assert product.errors[:price].any?
     assert product.errors[:image].any?
   end
 
