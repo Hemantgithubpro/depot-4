@@ -7,11 +7,16 @@ class User < ApplicationRecord
   normalizes :email_address, with: ->(e) { e.strip.downcase }
 
   after_destroy :ensure_an_admin_remains
+  after_create :send_user_mail
 
   class Error < StandardError
   end
 
   private
+    def send_user_mail
+      UserMailer.welcome(self).deliver_later
+    end
+
     def ensure_an_admin_remains
       if User.count.zero?
         raise Error.new "Can't delete last user"
