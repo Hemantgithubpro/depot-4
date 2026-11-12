@@ -80,3 +80,6 @@ articles:
 4. User should not be destroyed if email is 'admin@depot.com'
 
 5. Should not be able to update user if email is 'admin@depot.com'
+
+articles:
+- https://guides.rubyonrails.org/active_record_callbacks.html
