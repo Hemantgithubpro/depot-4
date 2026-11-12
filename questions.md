@@ -76,7 +76,7 @@ articles:
 2. Discount price should be equal to price unless specified explicitly.
 
 3. Send a mail with subject 'Welcome' on users mail after new user is created.
-
+- `bin/rails generate mailer User welcome`
 4. User should not be destroyed if email is 'admin@depot.com'
 
 5. Should not be able to update user if email is 'admin@depot.com'
