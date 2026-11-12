@@ -1,6 +1,9 @@
 class Product < ApplicationRecord
   has_many :line_items
 
+  after_initialize :set_default_title
+  after_validation :set_default_discount_price
+
   before_destroy :ensure_not_referenced_by_any_line_item
 
   has_one_attached :image
@@ -22,12 +25,20 @@ class Product < ApplicationRecord
   validates :price, numericality: { greater_than_or_equal_to: 0.01, greater_than: ->(product) { product.discount_price } }, if: -> { price.present? }
   # validates :price, numericality: { greater_than_or_equal_to: 0.01 }, allow_nil: true
   validates :enabled, inclusion: { in: [ true, false ] }
-  validates :discount_price, numericality: { greater_than_or_equal_to: 0 }
+  validates :discount_price, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
   validates :permalink, uniqueness: true, format: { with: /\A[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+){2,}\z/ }
   validate :ensure_description_between_5_10_words
   # validate :price_greater_than_discount_price
 
   private
+
+    def set_default_title
+      self.title = "abc" if title.blank?
+    end
+
+    def set_default_discount_price
+      self.discount_price = price if discount_price.blank?
+    end
 
     # def price_greater_than_discount_price
     #   if price <= discount_price
