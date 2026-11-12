@@ -1,6 +1,8 @@
 class Product < ApplicationRecord
   has_many :line_items
 
+  after_initialize :set_default_title
+
   before_destroy :ensure_not_referenced_by_any_line_item
 
   has_one_attached :image
@@ -28,6 +30,10 @@ class Product < ApplicationRecord
   # validate :price_greater_than_discount_price
 
   private
+
+    def set_default_title
+      self.title = "abc" if title.blank?
+    end
 
     # def price_greater_than_discount_price
     #   if price <= discount_price

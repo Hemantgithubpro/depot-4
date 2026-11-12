@@ -69,3 +69,14 @@ articles:
 - https://edgeapi.rubyonrails.org/classes/ActiveModel/EachValidator.html
 - https://guides.rubyonrails.org/v6.0.0/active_record_validations.html
 - https://stackoverflow.com/questions/923796/how-do-you-validate-uniqueness-of-a-pair-of-ids-in-ruby-on-rails
+
+# Callbacks
+1. Product should be always be initialized with default title 'abc' if no title given.
+
+2. Discount price should be equal to price unless specified explicitly.
+
+3. Send a mail with subject 'Welcome' on users mail after new user is created.
+
+4. User should not be destroyed if email is 'admin@depot.com'
+
+5. Should not be able to update user if email is 'admin@depot.com'
