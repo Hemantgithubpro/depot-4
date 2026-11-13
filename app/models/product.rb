@@ -1,5 +1,5 @@
 class Product < ApplicationRecord
-  has_many :line_items
+  has_many :line_items, dependent: :restrict_with_error
   has_one_attached :image
 
   validates :title, :description, :image, presence: true
@@ -16,7 +16,6 @@ class Product < ApplicationRecord
 
   before_validation :set_default_title
   after_validation :set_default_discount_price
-  before_destroy :ensure_not_referenced_by_any_line_item
 
   private
 
@@ -50,14 +49,6 @@ class Product < ApplicationRecord
       word_count = description.split.size
       unless word_count.between?(5, 10)
         errors.add(:description, "must have 5 to 10 words")
-      end
-    end
-
-    # ensure that there are no line items referencing this product
-    def ensure_not_referenced_by_any_line_item
-      unless line_items.empty?
-        errors.add(:base, "Line Items present")
-        throw :abort
       end
     end
 end
