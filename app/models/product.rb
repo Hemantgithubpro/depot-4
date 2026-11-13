@@ -1,5 +1,6 @@
 class Product < ApplicationRecord
   has_many :line_items, dependent: :restrict_with_error
+  has_many :carts, through: :line_items
 
   after_initialize :set_default_title
   after_validation :set_default_discount_price
