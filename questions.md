@@ -83,3 +83,18 @@ articles:
 
 articles:
 - https://guides.rubyonrails.org/active_record_callbacks.html
+
+
+# Associations
+1. We have before_destroy :ensure_not_referenced_by_line_item in Product. Now lets try a better implementation of this using association options. So a product should not be destroyed if there is any line_item(s) associated with the product.
+2. Create a association on cart through which we could get all the products associated with the cart.
+3. Create a association on product through which we could get all the carts associated with the product.
+4. Create a association on cart model through which i could get all enabled products associated with it.
+5. Everytime a line_item is added or removed from cart, line_items_count column in cart table should be automatically incremented or decremented .
+6. Add an association between user and order. Then add another page in the application which can be accessed by localhost:3000/users/orders and display logged in user’s all orders with total amount and line_items.
+	- Then add another page localhost:3000/users/line_Items which should display all line_items that current users has ordered till date. All lineitems for the user should come from association. like user.line_items
+	- This list should be paginated. 5 items per page
+
+articles:
+- https://guides.rubyonrails.org/association_basics.html
+- https://guides.rubyonrails.org/association_basics.html#dependent
