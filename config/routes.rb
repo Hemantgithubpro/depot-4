@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   resources :support_requests, only: %i[ index update ]
 
+  get "users/orders", to: "users#orders", as: :user_orders
+  get "users/line_items", to: "users#line_items", as: :user_line_items
   resources :users
   resources :products
   resource :session
