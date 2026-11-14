@@ -6,6 +6,14 @@ class UsersController < ApplicationController
     @users = User.order(:name)
   end
 
+  def orders
+    @orders = Current.user.orders.includes(line_items: :product).order(created_at: :desc)
+  end
+
+  def line_items
+    @line_items = Current.user.line_items.includes(:product, :order).order(created_at: :desc)
+  end
+
   # GET /users/1 or /users/1.json
   def show
   end
