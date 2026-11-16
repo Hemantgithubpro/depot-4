@@ -1,4 +1,5 @@
 require "pago"
+require "date"
 
 class Order < ApplicationRecord
   enum :pay_type, {
@@ -9,6 +10,9 @@ class Order < ApplicationRecord
   has_many :line_items, dependent: :destroy
   has_many :support_requests, dependent: :nullify
   belongs_to :user
+  scope :by_date, ->(from = Date.current, to = Date.current) {
+    where(created_at: (from.beginning_of_day)..(to.end_of_day))
+  }
 
   validates :name, :address, :email, presence: true
   validates :pay_type, inclusion: pay_types.keys
