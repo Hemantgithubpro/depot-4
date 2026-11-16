@@ -1,6 +1,7 @@
 class Product < ApplicationRecord
   has_many :line_items, dependent: :restrict_with_error
   has_many :carts, through: :line_items
+  scope :enabled, -> { where(enabled: true) }
   has_one_attached :image
 
   validates :title, :description, :image, presence: true

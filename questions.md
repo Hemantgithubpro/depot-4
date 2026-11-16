@@ -99,3 +99,13 @@ articles:
 articles:
 - https://guides.rubyonrails.org/association_basics.html
 - https://guides.rubyonrails.org/association_basics.html#dependent
+
+# Query Interface
+1. Make a scope for all the enabled products
+2. Add another scope in order which accept two dates and return orders placed between those dates:
+	- Order.by_date(from, to)
+	- Order.by_date : without arguments, should return order for the current day
+	- user.orders.by_date should work and it should return orders placed by user between given dates. Check the query difference in this one and the above one
+3. Build queries for following
+	- Get All products which are present in atleast one line_item
+	- Get array of product titles which are present in atleast one line item
