@@ -108,4 +108,6 @@ articles:
 	- user.orders.by_date should work and it should return orders placed by user between given dates. Check the query difference in this one and the above one
 3. Build queries for following
 	- Get All products which are present in atleast one line_item
+	`Product.atleast_one_line_item`
 	- Get array of product titles which are present in atleast one line item
+	`Product.atleast_one_line_item.pluck(:title)`
