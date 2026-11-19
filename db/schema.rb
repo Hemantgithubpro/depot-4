@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_11_06_064509) do
+ActiveRecord::Schema[8.1].define(version: 2026_11_18_054513) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -96,7 +96,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_06_064509) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "enabled", default: false
-    t.decimal "discount_price", default: "0.0"
+    t.decimal "discount_price"
     t.string "permalink"
   end
 

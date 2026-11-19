@@ -22,6 +22,7 @@ articles:
 - https://www.theodinproject.com/lessons/ruby-on-rails-migrations
 - https://www.railscarma.com/blog/rails-generate-migration-everything-you-need-to-know/
 - https://guides.rubyonrails.org/active_record_migrations.html
+- https://stackoverflow.com/questions/7096514/is-there-a-simple-way-to-test-a-migration-before-running-it
 
 
 Q7. Revise irreversible migration, and make an example of irreversible migration

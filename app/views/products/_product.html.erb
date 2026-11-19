@@ -15,10 +15,10 @@
     <strong class="block font-medium mb-1">Price:</strong>
     <%= product.price %>
   </div>
-  <% if product.enabled %>
+  <% if product.enabled? %>
     <div>
-      <strong class="block font-medium mb-1">Discouted Price:</strong>
-      <%= product.discount_price %>
+      <strong class="block font-medium mb-1">Discounted Price:</strong>
+      <%= number_to_currency(product.discount_price) %>
     </div>
     <div>
       <strong class="block font-medium mb-1">Permalink:</strong>
