@@ -22,14 +22,13 @@ class Product < ApplicationRecord
     end
   end
   validates :title, length: { minimum: 10 }
-  validates :price, numericality: { greater_than_or_equal_to: 0.01, greater_than: ->(product) { product.discount_price || 0 } }, if: -> { price.present? }
-  # validates :price, numericality: { greater_than_or_equal_to: 0.01 }, allow_nil: true
+  validates :price, numericality: { greater_than_or_equal_to: 0.01 }, if: -> { price.present? }
   validates :enabled, inclusion: { in: [ true, false ] }
-  validates :discount_price, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
+  validates :discount_price, numericality: { greater_than_or_equal_to: 0, less_than: ->(product) { product.price } }, allow_blank: true
   validates :permalink, uniqueness: true, format: { with: /\A[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+){2,}\z/ }
   validates :image_url, url: true, allow_blank: true
   validate :ensure_description_between_5_10_words
-  # validate :price_greater_than_discount_price
+  # validate :discount_price_less_than_price
 
   private
 
@@ -38,14 +37,14 @@ class Product < ApplicationRecord
     end
 
     def set_default_discount_price
-      self.discount_price = price if discount_price.blank?
+      self.discount_price = price if discount_price.blank? && price.present?
     end
 
-    # def price_greater_than_discount_price
-    #   if price <= discount_price
-    #    p self
-    #     errors.add(:price, "price should be greater than discount price")
-    #   end
+    # def discount_price_less_than_price
+    #   return if discount_price.blank? || price.blank?
+    #   return if price > discount_price
+
+    #   errors.add(:discount_price, "discount price should be less than price")
     # end
 
     def ensure_description_between_5_10_words
