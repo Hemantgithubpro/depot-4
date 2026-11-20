@@ -1,0 +1,37 @@
+<% content_for :title, "Line items" %>
+
+<div class="w-full">
+  <h1 class="font-bold text-3xl">Line items of <%= Current.user.name %></h1>
+
+  <% if @line_items.any? %>
+    <div>
+      <% @line_items.each do |line_item| %>
+        <div class="border-b">
+          <p>
+            <%= line_item.quantity %>
+            <%= line_item.product.title %>
+          </p>
+          <p><%= number_to_currency(line_item.total_price) %></p>
+          <p>Order No. <%= line_item.order_id %></p>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <p>No line items found.</p>
+  <% end %>
+
+  <% if @total_pages > 1 %>
+    <div class="border-b">
+      <% if @page > 1 %>
+        <%= link_to "Previous", user_line_items_path(page: @page - 1), class: "underline" %>
+      <% end %>
+
+      <div>Page <%= @page %> of <%= @total_pages %></div>
+
+      <% if @page < @total_pages %>
+        <%= link_to "Next", user_line_items_path(page: @page + 1), class: "underline" %>
+      <% end %>
+    </div>
+  <% end %>
+
+</div>
