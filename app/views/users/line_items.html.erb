@@ -20,18 +20,8 @@
     <p>No line items found.</p>
   <% end %>
 
-  <% if @total_pages > 1 %>
-    <div class="border-b">
-      <% if @page > 1 %>
-        <%= link_to "Previous", user_line_items_path(page: @page - 1), class: "underline" %>
-      <% end %>
-
-      <div>Page <%= @page %> of <%= @total_pages %></div>
-
-      <% if @page < @total_pages %>
-        <%= link_to "Next", user_line_items_path(page: @page + 1), class: "underline" %>
-      <% end %>
-    </div>
-  <% end %>
+  <div class="mt-4">
+    <%= will_paginate @line_items %>
+  </div>
 
 </div>
