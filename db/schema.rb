@@ -68,7 +68,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_26_110614) do
   end
 
   create_table "categories", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.bigint "parent_id"
     t.integer "products_count", default: 0, null: false
     t.datetime "created_at", null: false
