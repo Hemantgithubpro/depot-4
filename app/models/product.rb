@@ -1,6 +1,7 @@
 class Product < ApplicationRecord
   has_many :line_items, dependent: :restrict_with_error
   has_many :carts, through: :line_items
+  belongs_to :category
   scope :enabled, -> { where(enabled: true) }
   scope :atleast_one_line_item, -> { joins(:line_items).distinct }
   scope :titles_with_line_item, -> { atleast_one_line_item.pluck(:title) }
