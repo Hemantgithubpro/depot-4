@@ -1,9 +1,23 @@
 class UsersController < ApplicationController
+  LINE_ITEMS_PER_PAGE = 5
+
   before_action :set_user, only: %i[ show edit update destroy ]
 
   # GET /users or /users.json
   def index
     @users = User.order(:name)
+  end
+
+  def orders
+    @orders = Current.user.orders.includes(line_items: :product).order(created_at: :desc)
+  end
+
+  def line_items
+    line_items = Current.user.line_items.includes(:product, :order).order(created_at: :desc)
+    @total_pages = (line_items.count.to_f / LINE_ITEMS_PER_PAGE).ceil
+    @page = params[:page].to_i
+
+    @line_items = line_items.limit(LINE_ITEMS_PER_PAGE).offset((@page - 1) * LINE_ITEMS_PER_PAGE)
   end
 
   # GET /users/1 or /users/1.json
