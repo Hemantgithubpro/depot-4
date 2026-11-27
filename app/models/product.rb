@@ -1,26 +1,10 @@
 class Product < ApplicationRecord
   has_many :line_items
-
-  after_initialize :set_default_title
-  after_validation :set_default_discount_price
-
-  before_destroy :ensure_not_referenced_by_any_line_item
-
   has_one_attached :image
-  after_commit -> { broadcast_refresh_later_to "products" }
-  validates :title, :description, :image, presence: true
 
+  validates :title, :description, :image, presence: true
   validates :title, uniqueness: true
   validate :acceptable_image
-
-  def acceptable_image
-    return unless image.attached?
-
-    acceptable_types = [ "image/gif", "image/jpeg", "image/png" ]
-    unless acceptable_types.include?(image.content_type)
-      errors.add(:image, "must be a GIF, JPG or PNG image")
-    end
-  end
   validates :title, length: { minimum: 10 }
   validates :price, numericality: { greater_than_or_equal_to: 0.01 }, if: -> { price.present? }
   validates :enabled, inclusion: { in: [ true, false ] }
@@ -30,7 +14,20 @@ class Product < ApplicationRecord
   validate :ensure_description_between_5_10_words
   # validate :discount_price_less_than_price
 
+  before_validation :set_default_title
+  after_validation :set_default_discount_price
+  before_destroy :ensure_not_referenced_by_any_line_item
+
   private
+
+    def acceptable_image
+      return unless image.attached?
+
+      acceptable_types = [ "image/gif", "image/jpeg", "image/png" ]
+      unless acceptable_types.include?(image.content_type)
+        errors.add(:image, "must be a GIF, JPG or PNG image")
+      end
+    end
 
     def set_default_title
       self.title = "abc" if title.blank?

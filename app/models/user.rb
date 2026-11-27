@@ -1,15 +1,16 @@
 class User < ApplicationRecord
-  validates :name, presence: true, uniqueness: true
-  validates :email_address, presence: true, uniqueness: true, format: { with: /\A[a-zA-Z0-9]+@[a-zA-Z]+\.[a-zA-Z]+\z/ }
-  has_secure_password
   has_many :sessions, dependent: :destroy
 
   normalizes :email_address, with: ->(e) { e.strip.downcase }
+  has_secure_password
 
-  after_destroy :ensure_an_admin_remains
-  after_create :send_user_mail
+  validates :name, presence: true, uniqueness: true
+  validates :email_address, presence: true, uniqueness: true, format: { with: /\A[a-zA-Z0-9]+@[a-zA-Z]+\.[a-zA-Z]+\z/ }
+
   before_destroy :ensure_admin_not_destroyed
   before_update :ensure_admin_not_updated
+  after_create :send_user_mail
+  after_destroy :ensure_an_admin_remains
 
   class Error < StandardError
   end
